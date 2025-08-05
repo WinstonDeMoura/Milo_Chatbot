@@ -20,7 +20,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=Remember05th
     volumes:
       - postgres_data:/var/lib/postgresql/data
     expose:
@@ -34,6 +34,19 @@ services:
       - redis:/data
     ports:
       - 6379:6379
+
+  bot:
+    build: .
+    container_name: milobot
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - evolution-api
+      - redis
+
+    restart: always
 
 volumes:
   evolution_instances:
