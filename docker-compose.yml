@@ -46,10 +46,14 @@ services:
     depends_on:
       - evolution-api
       - redis
-
     restart: always
+    volumes:
+      - ./vectorstore_data:/app/vectorestore
+      - ./rag_files:/app/rag_files
 
 volumes:
   evolution_instances:
   postgres_data:
   redis:
+  vectorstore_data:
+  rag_files:
